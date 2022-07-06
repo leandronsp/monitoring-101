@@ -2,13 +2,13 @@
 
 NAMESPACE=monitoring
 
-kubectl create deployment \
-  prometheus-pod \
-  --namespace=$NAMESPACE \
-  --image=prom/prometheus \
-  --replicas=1 \
-  --port=9090 \
-  --dry-run=client \
-  --output=yaml > ./prometheus/pod.yml
+kubectl apply -f ./namespace.yml
 
-kubectl apply -f ./prometheus/pod.yml
+kubectl create configmap prometheus-config \
+  --from-file ./config/prometheus.yml \
+  --namespace $NAMESPACE
+
+kubectl apply -f ./node-exporter/ --namespace $NAMESPACE
+kubectl apply -f ./prometheus/    --namespace $NAMESPACE
+
+kubectl rollout restart deploy/prometheus-pod --namespace $NAMESPACE
