@@ -442,7 +442,7 @@
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "/monitoring|production|staging|kube-system|default/",
+        "regex": ".*",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -483,6 +483,6 @@
   "timezone": "browser",
   "title": "Kubernetes",
   "uid": "kubernetes-42",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }
