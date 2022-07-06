@@ -3,12 +3,23 @@
 NAMESPACE=monitoring
 
 kubectl apply -f ./namespace.yml
+kubectl apply -f ./common/
 
 kubectl create configmap prometheus-config \
   --from-file ./config/prometheus.yml \
-  --namespace $NAMESPACE
+  --namespace $NAMESPACE \
+  --dry-run=client \
+  --output=yaml > ./prometheus/configmap.yml
 
-kubectl apply -f ./node-exporter/ --namespace $NAMESPACE
-kubectl apply -f ./prometheus/    --namespace $NAMESPACE
+kubectl create configmap grafana-config \
+    --from-file ./config/grafana.json \
+    --namespace $NAMESPACE \
+    --dry-run=client \
+    --output=yaml > ./grafana/configmap.yml
+
+#kubectl apply -f ./node-exporter/ --namespace $NAMESPACE
+kubectl apply -f ./prometheus/ --namespace $NAMESPACE
+kubectl apply -f ./grafana/ --namespace $NAMESPACE
 
 kubectl rollout restart deploy/prometheus-pod --namespace $NAMESPACE
+kubectl rollout restart deploy/grafana-pod --namespace $NAMESPACE
