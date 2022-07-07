@@ -24,7 +24,7 @@ $ open localhost:9090
 
 ## Grafana
 ```bash
-$ make prom.serve
+$ make grafana.serve
 $ open localhost:3000 (Login: admin | admin)
 ```
 
