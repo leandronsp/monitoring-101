@@ -10,5 +10,8 @@ prom.serve:
 grafana.serve:
 	@kubectl -n monitoring port-forward deploy/grafana-pod 3000:3000
 
-node-exporter.serve:
-	@kubectl -n monitoring port-forward svc/node-exporter-svc 9100:80
+kube-state-metrics.serve:
+	@kubectl -n kube-system port-forward deploy/kube-state-metrics-pod 8080:8080
+
+app.serve:
+	@kubectl port-forward deploy/nginx-pod 8080:80

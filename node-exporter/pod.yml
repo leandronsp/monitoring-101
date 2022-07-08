@@ -11,7 +11,6 @@ spec:
       app: node-exporter-pod
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: node-exporter-pod
     spec:
