@@ -4,8 +4,8 @@ NAMESPACE=monitoring
 
 kubectl apply -f ./namespace.yml
 kubectl apply -f ./common/
+kubectl apply -f ./kube-state-metrics/
 
-kubectl apply -f ./kube-state-metrics/ --namespace kube-system
 kubectl apply -f ./node-exporter/ --namespace $NAMESPACE
 kubectl apply -f ./prometheus/ --namespace $NAMESPACE
 kubectl apply -f ./grafana/ --namespace $NAMESPACE
