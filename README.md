@@ -9,6 +9,8 @@ A Kubernetes cluster running in a Docker Desktop for Mac, version 4.4.2.
 * Kubernetes
 * Prometheus
 * cAdvisor
+* kube-state-metrics
+* node-exporter
 * Grafana
 
 ## Setup
